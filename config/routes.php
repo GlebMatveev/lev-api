@@ -13,15 +13,6 @@ use Slim\Routing\RouteContext;
 
 return function (App $app) {
 
-    // $app->get('/hello', function (ServerRequestInterface $request, ResponseInterface $response) {
-    //     $response->getBody()->write('Hello World');
-    //     return $response;
-    // });
-    // $app->add(CorsMiddleware::class);
-
-    // CORS
-    // $app->add(new Tuupola\Middleware\CorsMiddleware);
-
     $app->add(function (Request $request, RequestHandlerInterface $handler): Response {
         $routeContext = RouteContext::fromRequest($request);
         $routingResults = $routeContext->getRoutingResults();
@@ -34,23 +25,24 @@ return function (App $app) {
         $response = $response->withHeader('Access-Control-Allow-Methods', implode(',', $methods));
         $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
 
-        // Optional: Allow Ajax CORS requests with Authorization header
-        // $response = $response->withHeader('Access-Control-Allow-Credentials', 'true');
-
         return $response;
     });
 
-
-    // EXAMPLE
-    $app->get('/example', '\App\Modules\Example\Example:getExample');
-    $app->post('/example', '\App\Modules\Example\Example:postExample');
-    $app->options('/example', function (Request $request, Response $response): Response {
+    // CATEGORIES
+    $app->get('/categories', '\App\Modules\Categories\Categories:getCategories');
+    $app->options('/categories', function (Request $request, Response $response): Response {
         return $response;
     });
 
-    $app->put('/example/{id}', '\App\Modules\Example\Example:putExample');
-    $app->delete('/example/{id}', '\App\Modules\Example\Example:deleteExample');
-    $app->options('/example/{id}', function (Request $request, Response $response): Response {
+    // SUBCATEGORIES
+    $app->get('/subcategories', '\App\Modules\Subcategories\Subcategories:getSubcategories');
+    $app->options('/subcategories', function (Request $request, Response $response): Response {
+        return $response;
+    });
+
+    // PRODUCTS
+    $app->get('/products', '\App\Modules\Products\Products:getProducts');
+    $app->options('/products', function (Request $request, Response $response): Response {
         return $response;
     });
 };
