@@ -17,7 +17,15 @@ class Categories
 
     public function getCategories(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $sql = "SELECT * FROM categories";
+        $sql = "SELECT
+            categories.id,
+            categories.title,
+            categories.slug,
+            categories.description,
+            categories.sort_weight,
+            categories.image
+            FROM
+            categories";
 
         $statement = $this->connection->query($sql);
         $result = $statement->fetchAll(PDO::FETCH_OBJ);
