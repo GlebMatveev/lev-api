@@ -18,9 +18,27 @@ class Products
     public function getProducts(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $sql = "SELECT
-            *,
+            products.id,
+            products.category_id,
             categories.slug AS 'category_slug',
-            subcategories.slug AS 'subcategory_slug'
+            products.subcategory_id,
+            subcategories.slug AS 'subcategory_slug',
+            products.title,
+            products.slug,
+            products.description,
+            products.ingredients,
+            products.quantity,
+            products.quantity_unit,
+            products.weight,
+            products.weight_unit,
+            products.volume,
+            products.volume_unit,
+            products.price,
+            products.price_unit,
+            products.old_price,
+            products.old_price_unit,
+            products.sort_weight,
+            products.image
             FROM
             products
             JOIN

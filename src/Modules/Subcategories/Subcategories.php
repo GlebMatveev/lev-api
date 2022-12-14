@@ -18,8 +18,14 @@ class Subcategories
     public function getSubcategories(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $sql = "SELECT
-            *,
-            categories.slug AS 'category_slug'
+            subcategories.id,
+            subcategories.category_id,
+            categories.slug AS 'category_slug',
+            subcategories.title,
+            subcategories.slug,
+            subcategories.description,
+            subcategories.sort_weight,
+            subcategories.image
             FROM
             subcategories
             JOIN
