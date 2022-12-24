@@ -45,4 +45,10 @@ return function (App $app) {
     $app->options('/products', function (Request $request, Response $response): Response {
         return $response;
     });
+
+    // PRODUCTS
+    $app->get('/modals/by-code/{code}', '\App\Modules\Modals\Modals:getModalByCode');
+    $app->options('/modals/by-code/{code}', function (Request $request, Response $response): Response {
+        return $response;
+    });
 };
