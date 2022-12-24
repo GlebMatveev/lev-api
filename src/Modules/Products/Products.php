@@ -38,7 +38,8 @@ class Products
             products.old_price,
             products.old_price_unit,
             products.sort_weight,
-            products.image
+            products.image,
+            products.activity
             FROM
             products
             JOIN
